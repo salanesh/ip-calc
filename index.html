@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wyn Lao Ip Calc</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+    />
+  </head>
+  <body>
+    <section class="section">
+      <div class="container">
+        <div class="columns is-centerd">
+          <div class="column">
+            <div class="field">
+              <div class="control">
+                <input
+                  class="input oct-fields"
+                  type="text"
+                  placeholder="First Octet"
+                  id="oct1"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="column">
+            <div class="field">
+              <div class="control">
+                <input
+                  class="input oct-fields"
+                  type="text"
+                  placeholder="Second Octet"
+                  id="oct2"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="column">
+            <div class="field">
+              <div class="control">
+                <input
+                  class="input oct-fields"
+                  type="text"
+                  placeholder="Third Octet"
+                  id="oct3"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="column">
+            <div class="field">
+              <div class="control">
+                <input
+                  class="input oct-fields"
+                  type="text"
+                  placeholder="Fourth Octet"
+                  id="oct4"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="column">
+            <div class="field">
+              <div class="control">
+                <input
+                  class="input"
+                  type="text"
+                  placeholder="Prefix"
+                  id="prefix"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="columns is-centered">
+          <div class="column is-full">
+            <div class="buttons is-centered">
+              <button class="button is-primary" id="calcButton">
+                Calculate
+              </button>
+              <button class="button is-link" id="resetButton">Reset</button>
+            </div>
+          </div>
+        </div>
+        <div class="columns">
+          <div class="column is-full">
+            <table class="table is-centered">
+              <thead>
+                <tr>
+                  <th>IP Address</th>
+                  <th>Network Address</th>
+                  <th>Broadcast Address</th>
+                  <th>First Host Address</th>
+                  <th>Last Host Address</th>
+                  <th># of Usable Host Addresses</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th>77.187.73.88/29</th>
+                  <th>77.187.73.88</th>
+                  <th>77.187.73.95</th>
+                  <th>77.187.73.89</th>
+                  <th>77.187.73.94</th>
+                  <th>6</th>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+    <script src="calc.js"></script>
+  </body>
+</html>
