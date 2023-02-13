@@ -13,13 +13,13 @@ calcButton.addEventListener("click", function () {
 });
 
 const basicValidator = () => {
-  let octVal = [];
+  let octValDecimal = [];
   let temp;
   let prefixVal;
   for (field of octFields) {
     temp = Number(field.value);
     if (temp >= 0 && temp <= 255) {
-      octVal.push(temp);
+      octValDecimal.push(temp);
     } else {
       throw "Please input a number between 0 and 255";
     }
@@ -30,36 +30,36 @@ const basicValidator = () => {
   } else {
     throw "Please input a prefix that is between 1 and 32";
   }
-  return { octVal, prefixVal };
+  return { octValDecimal, prefixVal };
 };
 
 class calcFunc {
   constructor(ipAdd) {
-    this.octVal = ipAdd.octVal;
+    this.octValDecimal = ipAdd.octValDecimal;
     this.prefixVal = ipAdd.prefixVal;
-    this.binaryOctets = this.convertBinary();
+    this.octValBinary = this.convertBinary(this.octValDecimal);
     this.hostNum = this.numOfHosts();
     this.subnetBinary = this.subnetFromPrefix();
     this.subnetDecimal = this.decimalMaker(this.subnetBinary);
-    this.networkAddBinary = this.netAddCalc();
+    this.networkAdd = this.netAddCalc();
   }
   printData() {
-    const { octVal, prefixVal, binaryOctets } = this;
-    console.log(octVal);
-    console.log(prefixVal);
-    console.log(binaryOctets);
-    console.log(this.subnetBinary);
-    console.log(this.subnetDecimal);
-    console.log(this.numOfHosts());
-    console.log(this.networkAddBinary);
+    const { octValDecimal, prefixVal, octValBinary } = this;
+    // console.log(octValDecimal);
+    // console.log(prefixVal);
+    // console.log(octValBinary);
+    // console.log(this.subnetBinary);
+    // console.log(this.subnetDecimal);
+    // console.log(this.numOfHosts());
+    // console.log(this.networkAdd);
+    console.log(this);
   }
-  convertBinary() {
-    const { octVal } = this;
-    let binaryOctets = [];
-    for (let i = 0; i < octVal.length; i++) {
-      binaryOctets.push(octVal[i].toString(2));
+  convertBinary(arrDecimal) {
+    let arrBinary = [];
+    for (let i = 0; i < arrDecimal.length; i++) {
+      arrBinary.push(arrDecimal[i].toString(2));
     }
-    return binaryOctets;
+    return arrBinary;
   }
   numOfHosts() {
     return 2 ** (32 - this.prefixVal) - 2;
@@ -91,11 +91,14 @@ class calcFunc {
   }
   netAddCalc() {
     let networkAdd = [];
-    const { binaryOctets, subnetBinary } = this;
+    const { octValDecimal, subnetDecimal } = this;
     for (let i = 0; i < 4; i++) {
-      networkAdd.push(binaryOctets[i] && subnetBinary[i]);
+      networkAdd.push(octValDecimal[i] & subnetDecimal[i]);
     }
     return networkAdd;
+  }
+  broadcastCalc(){
+
   }
   execute() {
     this.printData();
