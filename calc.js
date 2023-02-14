@@ -1,12 +1,13 @@
 const calcButton = document.querySelector("#calcButton");
 const octFields = document.querySelectorAll(".oct-fields");
 const prefix = document.querySelector("#prefix");
+const tbodyElement = document.querySelector("tbody");
 
 calcButton.addEventListener("click", function () {
   try {
     let ipAdd = basicValidator();
     let ipAddData = new calcFunc(ipAdd);
-    ipAddData.execute();
+    displayThisShit(ipAddData.relevantDataArrGen());
   } catch (e) {
     alert(e);
   }
@@ -31,6 +32,28 @@ const basicValidator = () => {
     throw "Please input a prefix that is between 1 and 32";
   }
   return { octValDecimal, prefixVal };
+};
+const displayThisShit = (data) => {
+  console.log(data);
+  let tableRowElement = document.createElement("tr");
+  for (let i = 0; i < 6; i++) {
+    let tableHeadElement = document.createElement("th");
+    let tableStr = "";
+    if (i < 5) {
+      for (let x = 0; x < 4; x++) {
+        if (x < 3) {
+          tableStr += data[i][x] + ".";
+        } else {
+          tableStr += data[i][x];
+        }
+      }
+    } else {
+      tableStr = data[i];
+    }
+    tableHeadElement.innerText = tableStr;
+    tableRowElement.appendChild(tableHeadElement);
+  }
+  tbodyElement.appendChild(tableRowElement);
 };
 
 class calcFunc {
@@ -112,8 +135,15 @@ class calcFunc {
     }
     return broadcastAdd;
   }
-  execute() {
-    this.printData();
-    // this.subnetFromPrefix();
+  relevantDataArrGen() {
+    const ipAdd = this.octValDecimal;
+    const networkAdd = this.networkAdd;
+    const broadcastAdd = this.broadcastAdd;
+    let firstHost = this.networkAdd.slice();
+    firstHost[3] += 1;
+    let lastHost = this.broadcastAdd.slice();
+    lastHost[3] -= 1;
+    const hostNum = this.hostNum;
+    return [ipAdd, networkAdd, broadcastAdd, firstHost, lastHost, hostNum];
   }
 }
