@@ -42,16 +42,9 @@ class calcFunc {
     this.subnetBinary = this.subnetFromPrefix();
     this.subnetDecimal = this.decimalMaker(this.subnetBinary);
     this.networkAdd = this.netAddCalc();
+    this.broadcastAdd = this.broadcastCalc();
   }
   printData() {
-    const { octValDecimal, prefixVal, octValBinary } = this;
-    // console.log(octValDecimal);
-    // console.log(prefixVal);
-    // console.log(octValBinary);
-    // console.log(this.subnetBinary);
-    // console.log(this.subnetDecimal);
-    // console.log(this.numOfHosts());
-    // console.log(this.networkAdd);
     console.log(this);
   }
   convertBinary(arrDecimal) {
@@ -97,8 +90,27 @@ class calcFunc {
     }
     return networkAdd;
   }
-  broadcastCalc(){
-
+  broadcastCalc() {
+    let broadcastAdd = [];
+    let inverseSubnet = [];
+    let temp = "";
+    const { octValDecimal, subnetBinary } = this;
+    for (let i = 0; i < 4; i++) {
+      for (let x = 0; x < 8; x++) {
+        if (subnetBinary[i][x] == "1") {
+          temp += "0";
+        } else {
+          temp += "1";
+        }
+      }
+      inverseSubnet.push(temp);
+      temp = "";
+    }
+    inverseSubnet = this.decimalMaker(inverseSubnet);
+    for (let y = 0; y < 4; y++) {
+      broadcastAdd.push(octValDecimal[y] | inverseSubnet[y]);
+    }
+    return broadcastAdd;
   }
   execute() {
     this.printData();
