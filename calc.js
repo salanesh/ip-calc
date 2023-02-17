@@ -2,6 +2,8 @@ const calcButton = document.querySelector("#calcButton");
 const octFields = document.querySelectorAll(".oct-fields");
 const prefix = document.querySelector("#prefix");
 const tbodyElement = document.querySelector("tbody");
+const resetButton = document.querySelector("#resetButton");
+
 
 calcButton.addEventListener("click", function () {
   try {
@@ -11,6 +13,17 @@ calcButton.addEventListener("click", function () {
   } catch (e) {
     alert(e);
   }
+});
+
+resetButton.addEventListener("click",function(){
+const octFields = document.querySelectorAll(".oct-fields");
+for(let i=0;i<5;i++){
+octFields[i].value="";
+}
+octFields[0].focus();
+octFields[0].select();
+console.log("reset clicked");
+
 });
 
 const basicValidator = () => {
