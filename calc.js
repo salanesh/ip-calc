@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded",function(){
     }
     octFields[0].focus();
     octFields[0].select();
-    console.log("reset clicked");
+    // console.log("reset clicked");
   }  
   const basicValidator = () => {
     let octValDecimal = [];
@@ -156,6 +156,7 @@ document.addEventListener("DOMContentLoaded",function(){
       let ipAdd = basicValidator();
       let ipAddData = new calcFunc(ipAdd);
       displayThisShit(ipAddData.relevantDataArrGen());
+      resetFields();
     } catch (e) {
       alert(e);
     }
