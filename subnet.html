@@ -1,16 +1,142 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Wynlao Subnet</title>
-</head>
-<body>
-    <h1>Wyn Lao Sucks</h1>
-    <h2>functionality for a base IP ADD and CIDR then subnet into subnetworks</h2>
-    <h2>Rebuild this by serving templates in express</h2>
-    <h2>Divide the code into sections for modularity</h2>
-    <h2>Use the npm version of bulma</h2>
-</body>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+    />
+    <script src="subnet.js"></script>
+  </head>
+  <body>
+    <section class="section">
+      <div class="container">
+        <nav class="navbar" role="navigation" aria-label="main navigation">
+          <div class="navbar-brand">
+            <a class="navbar-item">
+              <h2>Wyn Lao Sucks</h2>
+            </a>
+          </div>
+        
+          <div id="navbarBasicExample" class="navbar-menu">
+            <div class="navbar-start">
+              <a class="navbar-item"  href="index.html">
+                Home
+              </a>
+        
+              <a class="navbar-item" href="subnet.html">
+                Subnet An Address
+              </a>
+            </div>
+        
+            <div class="navbar-end">
+              <div class="navbar-item">
+                <div class="buttons">
+                  <a class="button is-primary">
+                    <strong>Sign up</strong>
+                  </a>
+                  <a class="button is-light">
+                    Log in
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </nav>
+        <div class="modal">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Modal title</p>
+      <button class="delete" aria-label="close"></button>
+    </header>
+    <section class="modal-card-body">
+      <!-- Content ... -->
+    </section>
+    <footer class="modal-card-foot">
+      <button class="button is-success">Save changes</button>
+      <button class="button">Cancel</button>
+    </footer>
+  </div>
+</div>
+      </div>
+      <div class="section">
+        <div class="container">
+          <div class="columns">
+            <div class="column">
+              <div class="field">
+                <div class="control">
+                  <input type="text" class="input oct-fields" placeholder="First Octet">
+                </div>
+              </div>
+            </div>
+            <div class="column">
+              <div class="field">
+                <div class="control">
+                  <input type="text" class="input oct-fields" placeholder="Second Octet">
+                </div>
+              </div>
+            </div>
+            <div class="column">
+              <div class="field">
+                <div class="control">
+                  <input type="text" class="input oct-fields" placeholder="Third Octet">
+                </div>
+              </div>
+            </div>
+            <div class="column">
+              <div class="field">
+                <div class="control">
+                  <input type="text" class="input oct-fields" placeholder="Fourth Octet">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="columns is-centered">
+            <div class="column">
+              <div class="field">
+                <div class="control">
+                  <input type="text" class="input cidr-fields" placeholder="Base CIDR">
+                </div>
+              </div>
+            </div>
+            <div class="column">
+              <div class="field">
+                <div class="control">
+                  <input type="text" class="input cidr-fields" placeholder="Subnet CIDR">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="columns">
+            <div class="column">
+              <div class="buttons is-centered">
+                <button class="button is-primary" id="subnetButton">Subnet This</button>
+                <button class="button is-link" id="resetButton">Reset</button>
+              </div>
+            </div>
+          </div>
+          <div class="columns">
+          <div class="column is-full">
+            <table class="table is-centered">
+              <thead>
+                <tr>
+                  <th>Subnetwork #</th>
+                  <th>Network Address</th>
+                  <th>Broadcast Address</th>
+                  <th>First Host Address</th>
+                  <th>Last Host Address</th>
+                  <th># of Usable Host Addresses</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+        </div>
+      </div>
+  </body>
 </html>
