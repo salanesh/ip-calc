@@ -1,9 +1,20 @@
 document.addEventListener("DOMContentLoaded", function () {
+  // SUBNET FIELDS AND BUTTONS
   const octFields = document.querySelectorAll(".oct-fields");
   const cidrFields = document.querySelectorAll(".cidr-fields");
   const subnetButton = document.querySelector("#subnetButton");
   const resetButton = document.querySelector("#resetButton");
+  //MODAL ELEMENTS
+  const modal = document.querySelector("#errorModal");
+  const errorArea = document.querySelector("#errorArea");
+  const closeButtons = document.querySelectorAll(".close-this");
 
+  const openModal = () => {
+    modal.classList.add("is-active");
+  };
+  const closeModal = () => {
+    modal.classList.remove("is-active");
+  };
   const validator = () => {
     let num = 0;
     let octetVals = [];
@@ -31,7 +42,13 @@ document.addEventListener("DOMContentLoaded", function () {
       let shit = validator();
       console.log(shit);
     } catch (e) {
-      alert(e);
+      errorArea.innerText = e;
+      openModal();
     }
   });
+
+  // MODAL EVENT LISTENERS
+  for (button of closeButtons) {
+    button.addEventListener("click", closeModal);
+  }
 });
